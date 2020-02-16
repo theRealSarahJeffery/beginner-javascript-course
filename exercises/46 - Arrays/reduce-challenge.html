@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Reduce!</title>
+  <link rel="stylesheet" href="../../base.css">
+</head>
+
+<body>
+  <script>
+
+    const text = `
+ English
+▼
+On this Page
+Constructor
+Properties and Methods of Function
+Function prototype object
+Function instances
+Examples
+Specifications
+Browser compatibility
+See also
+Every JavaScript function is actually a Function object. This can be seen with the code (function(){}).constructor === Function which returns true.
+
+Constructor
+Function()
+The Function constructor creates a new Function object. Calling the constructor directly can create functions dynamically, but suffers from security and similar (but far less significant) performance issues to eval. However, unlike eval, the Function constructor creates functions which execute in the global scope only.
+Properties and Methods of Function
+The global Function object has no methods or properties of its own. However, since it is a function itself, it does inherit some methods and properties through the prototype chain from Function.prototype.
+
+Function prototype object
+Properties
+Function.prototype.arguments
+An array corresponding to the arguments passed to a function.
+This is deprecated as a property of Function. Use the arguments object (available within the function) instead.
+Function.arity
+Used to specifiy the number of arguments expected by the function, but has been removed. Use the length property instead.
+Function.prototype.caller
+Specifies the function that invoked the currently executing function.
+This property is deprecated, and is only functional for some non-strict functions.
+Function.prototype.length
+Specifies the number of arguments expected by the function.
+Function.prototype.name
+The name of the function.
+Function.displayName
+The display name of the function.
+Function.prototype.constructor
+Specifies the function that creates an object's prototype.
+See Object.prototype.constructor for more details.
+Methods
+Function.prototype.apply(thisArg [, argsArray])
+Calls a function and sets its this to the provided thisArg. Arguments can be passed as an Array object.
+Function.prototype.bind(thisArg[, arg1[, arg2[, ...argN]]])
+Creates a new function which, when called, has its this set to the provided thisArg. Optionally, a given sequence of arguments will be prepended to arguments provided the newly-bound function is called.
+Function.prototype.call()
+Calls a function and sets its this to the provided value. Arguments can be passed as they are.
+Function.prototype.isGenerator()
+Returns true if the function is a generator; otherwise returns false.
+Function.prototype.toSource()
+Returns a string representing the source code of the function.
+Overrides the Object.prototype.toSource method.
+Function.prototype.toString()
+Returns a string representing the source code of the function.
+Overrides the Object.prototype.toString method.
+Function instances
+Function instances inherit methods and properties from Function.prototype. As with all constructors, you can change the constructor's prototype object to make changes to all Function instances.
+ `
+
+    // Grab all the text from a web page
+    // Count how many times each letter and number occurs
+
+
+
+    function isValidChar(char) {
+      return char.match(/[a-z0-9]/i);
+    }
+
+    //function lowercase(char){
+    // return chr.toLowerCase();
+    // }
+
+    const lowercase = char => char.toLowerCase();
+    function instanceCounter(counts, char) {
+      counts[char]
+        ? counts[char] = counts[char] + 1
+        : counts[char] = 1;
+      return counts;
+    }
+
+    const result = text
+      .split('') //split each char into an item
+      .filter(isValidChar)
+      .map(lowercase) // conert every letter to lowercase
+      .reduce(instanceCounter, {});
+    console.log(result);
+
+    function sortByValue(a, b) {
+      return a[1] - b[1];
+    }
+    const sortedResult = Object
+      .entries(result)
+      .sort(sortByValue);
+    console.log(sortedResult);
+
+
+
+
+
+  </script>
+</body>
+
+</html>
